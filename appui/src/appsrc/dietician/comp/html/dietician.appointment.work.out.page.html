@@ -1,0 +1,73 @@
+<h4>Appointment Work Out</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <td colspan="2"><b>User Details</b></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td width="195">User ID:</td>
+            <td>{{pad(appointmentdata.id)}}</td>
+          </tr>
+          <tr>
+            <td width="195">Full Name:</td>
+            <td>{{appointmentdata.userDetails.details.firstName}} {{appointmentdata.userDetails.details.lastName}}</td>
+          </tr>
+          <tr>
+            <td width="195">Phone Number:</td>
+            <td>{{appointmentdata.userDetails.phoneNumber}}</td>
+          </tr>
+          <tr>
+            <td width="195">Email Address:</td>
+            <td>{{appointmentdata.userDetails.details.emailAddress}}</td>
+          </tr>
+          <tr>
+            <td width="195">Age:</td>
+            <td>{{appointmentdata.userDetails.age}}</td>
+          </tr>
+          <tr>
+            <td width="195">Height:</td>
+            <td>{{appointmentdata.userDetails.height}}</td>
+          </tr>
+          <tr>
+            <td width="195">Current Weight:</td>
+            <td>{{appointmentdata.userDetails.currentWeight}}</td>
+          </tr>
+          <tr>
+            <td width="195">Target Weight:</td>
+            <td>{{appointmentdata.userDetails.targetWeight}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form (ngSubmit)="postEvent()" [formGroup]="frmdata" autocomplete="off">
+        <h4>Diet and Work Out</h4>
+        <div class="row g-3 mb-3">
+          <label class="col-md-2 text-end me-2">Prescription:</label>
+          <div class="col-md-9">
+            <textarea class="form-control" formControlName="prescription" placeholder="Diet and Work Out Prescription"
+                      rows="11"></textarea>
+            <small class="text-danger" *ngIf="val('prescription')">Enter Diet and Work out</small>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-11">
+            <div *ngIf="loading" class="float-end">
+              <i class="fa fa-sync fa-spin me-1"></i>Please wait...
+            </div>
+            <button *ngIf="!loading" class="btn btn-success float-end">
+              <i class="fa fa-save me-1"></i>Post
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

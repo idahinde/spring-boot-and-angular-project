@@ -1,0 +1,16 @@
+
+.classpath
+.project
+.settings
+
+/target
+/.idea
+
+healthify.iml
+
+/appui/node_modules
+/appui/.angular
+/appui/.vscode
+/appui/package-lock.json
+/appui/.browserslistrc
+/appui/.editorconfig

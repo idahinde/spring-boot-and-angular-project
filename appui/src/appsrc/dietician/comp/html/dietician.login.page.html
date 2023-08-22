@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+	<div class="container">
+		<a class="navbar-brand" [routerLink]="['/dietician','login']">Dietician Section</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav me-auto mb-2 mb-md-0">
+				<li class="nav-item"><a class="nav-link"
+					aria-current="page" [routerLink]="['/home']">Home</a></li>
+				<li class="nav-item"><a class="nav-link active"
+					[routerLink]="['/dietician','login']">Dietician Login</a></li>
+				<li class="nav-item"><a class="nav-link"
+					[routerLink]="['/dietician','register']">Dietician Registration</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class=row>
+		<div class="col-6 mx-auto text-center">
+			<div class="form-signin w-100 m-auto">
+        <form autocomplete="off" [formGroup]="frmGroup" (ngSubmit)="loginEvent()">
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<h1 class="h3 mb-3 fw-normal">Dietician Sign In</h1>
+
+					<div class="form-floating mb-3">
+						<input type="email" class="form-control" id="floatingInput"
+                   formControlName="username"	placeholder="Username">
+            <label for="floatingInput">Email Address</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input type="password" class="form-control" id="floatingPassword"
+                   formControlName="password"	placeholder="Password">
+            <label for="floatingPassword">Password</label>
+					</div>
+          <div *ngIf="loading">
+            <i class="fa fa-sync fa-spin me-1"></i>Please wait...
+          </div>
+					<button *ngIf="!loading" [disabled]="frmGroup.invalid" class="w-100 btn btn-lg btn-success" type="submit">
+            <i class="fa fa-sign-in me-1"></i>Sign in</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<h4>{{title}}</h4>
+<div *ngIf="appointmentdatalist$|async as appointmentdata;" class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td width="35"><b>S/N</b></td>
+      <td width="235"><b>Full Name (User)</b></td>
+      <td><b>Reason</b></td>
+      <td width="175"><b>Appointment Date</b></td>
+      <td width="175"><b>Appointment Time</b></td>
+      <td width="55"><b>Status</b></td>
+      <td width="75"><b>Action</b></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let appdata of appointmentdata; index as i;">
+      <td>{{i + 1}}</td>
+      <td>{{appdata.dietician.details.firstName}} {{appdata.dietician.details.lastName}}</td>
+      <td>{{appdata.reason}}</td>
+      <td>{{appdata.appointmentDate|date}}</td>
+      <td>{{appdata.appointmentTime}}</td>
+      <td>{{appdata.status}}</td>
+      <td>
+        <button type="button" class="btn btn-success" (click)="goto(appdata)"><i class="fa fa-link"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

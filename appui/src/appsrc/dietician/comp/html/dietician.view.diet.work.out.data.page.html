@@ -1,0 +1,25 @@
+<h4>Diet Work Out List</h4>
+<div *ngIf="workdatalist$|async as workoutdaref;" class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td width="35"><b>S/N</b></td>
+      <td width="155"><b>Appointment ID</b></td>
+      <td width="235"><b>Full Name(User)</b></td>
+      <td><b>Work Out</b></td>
+      <td width="175"><b>Appointment Date</b></td>
+      <td width="175"><b>Appointment Time</b></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let workdata of workoutdaref;index as i;">
+      <td>{{i + 1}}</td>
+      <td>{{pad(workdata.id)}}</td>
+      <td>{{workdata.appointment.userDetails.details.firstName}} {{workdata.appointment.userDetails.details.lastName}}</td>
+      <td>{{workdata.prescription}}</td>
+      <td>{{workdata.appointment.appointmentDate|date}}</td>
+      <td>{{workdata.appointment.appointmentTime}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,139 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a [routerLink]="['/user','login']" class="navbar-brand">User Section</a>
+    <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-bs-target="#navbarCollapse" data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item"><a [routerLink]="['/home']" aria-current="page" class="nav-link">Home</a></li>
+        <li class="nav-item"><a [routerLink]="['/user','login']" class="nav-link">User Login</a></li>
+        <li class="nav-item"><a [routerLink]="['/user','register']" class="nav-link active">Register User</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class=row>
+    <div class="col-8 mx-auto">
+      <div class="form-signin w-100 m-auto">
+        <form (ngSubmit)="register()" [formGroup]="frmForm" autocomplete="off">
+          <p></p>
+          <h4 class="mb-2">User Registration Form</h4>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label" for="firstName">First name</label> <input
+              class="form-control" formControlName="firstName" id="firstName" placeholder="First name" alphabetOnly
+              required type="text">
+              <small class="text-danger" *ngIf="req('firstName')">Enter First Name</small>
+              <small class="text-danger" *ngIf="val('firstName','pattern')">First Name cannot contain number</small>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-label" for="lastName">Last name</label> <input alphabetOnly
+              class="form-control" formControlName="lastName" id="lastName" placeholder="Last name"
+              required type="text">
+              <small class="text-danger" *ngIf="req('lastName')">Enter Last Name</small>
+              <small class="text-danger" *ngIf="val('lastName','pattern')">Last Name cannot contain number</small>
+            </div>
+          </div>
+
+          <div class="row g-3  mt-2">
+            <div class="col-sm-6">
+              <label class="form-label" for="age">Age</label> <input
+              class="form-control" formControlName="age" id="age" placeholder="Age" required type="number">
+              <small class="text-danger" *ngIf="req('age')">Enter Age</small>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-label" for="height">Height</label> <input
+              class="form-control" formControlName="height" id="height" placeholder="Height"
+              required type="number">
+              <small class="text-danger" *ngIf="req('height')">Enter Height</small>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-sm-6">
+              <label class="form-label" for="currentWeight">Current Weight</label> <input
+              class="form-control" formControlName="currentWeight" id="currentWeight" placeholder="Current weight"
+              required type="number">
+              <small class="text-danger" *ngIf="req('currentWeight')">Enter Current Weight</small>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-label" for="targetWeight">Target Weight</label> <input
+              class="form-control" formControlName="targetWeight" id="targetWeight" placeholder="Target weight"
+              required type="number">
+              <small class="text-danger" *ngIf="req('targetWeight')">Target Weight</small>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-sm-6">
+              <label class="form-label" for="phonenumber">Phone Number</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                <input class="form-control" formControlName="phoneNumber"
+                       id="phonenumber" placeholder="Phone number" required type="number">
+                <div class="invalid-feedback"></div>
+              </div>
+              <small class="text-danger" *ngIf="req('phoneNumber')">Phone number</small>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-label" for="username">Email Address</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                <input class="form-control" formControlName="emailAddress"
+                       id="username" placeholder="Email address" required type="text">
+                <div class="invalid-feedback"></div>
+              </div>
+              <small class="text-danger" *ngIf="req('emailAddress')">Enter E-mail Address</small>
+              <small class="text-danger" *ngIf="val('emailAddress','email')">Invalid E-mail Address</small>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-sm-6">
+              <label class="form-label" for="password">Password</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                <input class="form-control" formControlName="password"
+                       id="password" placeholder="Password" required type="password">
+                <div class="invalid-feedback"></div>
+              </div>
+              <small class="text-danger" *ngIf="req('password')">Enter Password</small>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-label" for="confirmpassword">Confirm Password</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                <input class="form-control" formControlName="confirmPassword" id="confirmpassword"
+                       placeholder="Confirm Password" required type="password">
+                <div class="invalid-feedback"></div>
+              </div>
+              <small class="text-danger" *ngIf="req('confirmPassword')">Enter Confirm Password</small>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-3">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4">
+              <div *ngIf="loading">
+                <i class="fa fa-sync fa-spin me-1"></i>Please wait...
+              </div>
+              <button *ngIf="!loading" class="w-100 btn btn-success" type="submit">
+                <i class="fa fa-save me-2"></i>Register
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>

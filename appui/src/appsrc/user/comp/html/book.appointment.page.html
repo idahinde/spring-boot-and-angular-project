@@ -1,0 +1,66 @@
+<h4>Book Appointment</h4>
+<p>&nbsp;</p>
+<form [formGroup]="frmbookdata" autocomplete="off" (ngSubmit)="postAppointment()">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="row g-3 mb-3">
+        <label class="col-sm-3 text-end">Dietician:</label>
+        <div class="col-md-9">
+          <select class="form-control" formControlName="dieticianId">
+            <option value="0">-</option>
+            <option *ngFor="let refda of fetchdietician$|async;"
+                    [value]="refda.id">{{refda.details.firstName}} {{refda.details.lastName}}</option>
+          </select>
+          <small *ngIf="val('dieticianId','greaterthanzero')" class="text-danger">Select Dietician</small>
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <label class="col-sm-3 text-end">Reason:</label>
+        <div class="col-md-9">
+          <textarea class="form-control" formControlName="reason" placeholder="Reason"></textarea>
+          <small *ngIf="val('reason','required')" class="text-danger">Enter reason</small>
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <label class="col-sm-3 text-end">Appointment Date:</label>
+        <div class="col-md-9">
+          <input [bsConfig]="bsConfig" [outsideClick]="false" bsDatepicker class="form-control"
+               [minDate]="mindate" formControlName="appDate" placeholder="Appointment date" readonly/>
+          <small *ngIf="val('appDate','required')" class="text-danger">Select Appointment Date</small>
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <label class="col-sm-3 text-end">Appointment Time:</label>
+        <div class="col-md-9">
+          <select class="form-control" formControlName="appTime">
+            <option value="empty">-</option>
+            <option value="08:00 am">08:00 am</option>
+            <option value="08:30 am">08:30 am</option>
+            <option value="09:00 am">09:00 am</option>
+            <option value="08:30 am">08:30 am</option>
+            <option value="10:00 am">10:00 am</option>
+            <option value="10:30 am">10:30 am</option>
+            <option value="11:00 am">11:00 am</option>
+            <option value="11:30 am">11:30 am</option>
+            <option value="12:00 pm">12:00 pm</option>
+            <option value="12:30 pm">12:30 pm</option>
+            <option value="01:00 pm">01:00 pm</option>
+            <option value="01:30 pm">01:30 pm</option>
+            <option value="02:00 pm">02:00 pm</option>
+            <option value="02:30 pm">02:30 pm</option>
+            <option value="03:00 pm">03:00 pm</option>
+            <option value="03:30 pm">03:30 pm</option>
+          </select>
+          <small *ngIf="val('appTime','notequalto')" class="text-danger">Select Appointment Time</small>
+        </div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-12">
+          <button class="btn float-end btn-success">
+            <i class="fa fa-save me-1"></i>Post
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

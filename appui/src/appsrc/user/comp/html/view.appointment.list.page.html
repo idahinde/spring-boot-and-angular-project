@@ -1,0 +1,26 @@
+<h4>Book Appointment</h4>
+<p>&nbsp;</p>
+<div class="table-responsive" *ngIf="appointmentdata$|async as appointdataref;">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td width="35"><b>S/N</b></td>
+      <td width="235"><b>Dietician</b></td>
+      <td><b>Reason</b></td>
+      <td width="185"><b>Appointment Date</b></td>
+      <td width="195"><b>Appointment Time</b></td>
+      <td width="95"><b>Status</b></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let appdata of appointdataref; index as i;">
+      <td>{{i + 1}}</td>
+      <td>{{appdata.dietician.details.firstName}} {{appdata.dietician.details.lastName}}</td>
+      <td>{{appdata.reason}}</td>
+      <td>{{appdata.appointmentDate|date}}</td>
+      <td>{{appdata.appointmentTime}}</td>
+      <td>{{appdata.status}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

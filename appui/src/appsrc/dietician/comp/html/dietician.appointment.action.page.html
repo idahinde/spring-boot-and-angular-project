@@ -1,0 +1,67 @@
+<h4>Appointment Action</h4>
+<div class="row">
+  <div class="col-md-6">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <td colspan="2"><b>Appointment Details</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td width="195">Appointment ID:</td>
+          <td>{{pad(appointmentdata.id)}}</td>
+        </tr>
+        <tr>
+          <td width="195">Full Name(User):</td>
+          <td>{{appointmentdata.userDetails.details.firstName}} {{appointmentdata.userDetails.details.lastName}}</td>
+        </tr>
+        <tr>
+          <td width="195">Reason:</td>
+          <td>{{appointmentdata.reason}}</td>
+        </tr>
+        <tr>
+          <td width="195">Date:</td>
+          <td>{{appointmentdata.appointmentDate|date}}</td>
+        </tr>
+        <tr>
+          <td width="195">Time:</td>
+          <td>{{appointmentdata.appointmentTime}}</td>
+        </tr>
+        <tr>
+          <td width="195">Status:</td>
+          <td>{{appointmentdata.status}}</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="container">
+              <form [formGroup]="frmdata" (ngSubmit)="postEvent()" autocomplete="off">
+                <div class="row g-3 mb-3">
+                  <label class="col-md-3 text-end">Action:</label>
+                  <div class="col-md-9">
+                    <select class="form-control" formControlName="statusaction">
+                      <option value="empty">-</option>
+                      <option value="Accept">Accept Appointment</option>
+                      <option value="Reject">Reject Appointment</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div *ngIf="loading" class="float-end">
+                      <i class="fa fa-sync fa-spin me-1"></i>Please wait...
+                    </div>
+                    <button  *ngIf="!loading" [disabled]="frmdata.invalid"class="btn btn-success float-end">
+                      <i class="fa fa-save me-1"></i>Post</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

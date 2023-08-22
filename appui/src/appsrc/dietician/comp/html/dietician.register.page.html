@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a [routerLink]="['/dietician','login']" class="navbar-brand">Dietician
+      Section</a>
+    <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler" data-bs-target="#navbarCollapse"
+            data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item"><a [routerLink]="['/home']"
+          aria-current="page" class="nav-link">Home</a></li>
+        <li class="nav-item"><a [routerLink]="['/dietician','login']"
+          class="nav-link">Dietician Login</a></li>
+        <li class="nav-item"><a [routerLink]="['/dietician','register']"
+          class="nav-link active">Dietician Registration</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class=row>
+    <div class="col-6 mx-auto">
+      <div class="form-signin w-100 m-auto">
+        <form [formGroup]="frmForm" (ngSubmit)="register()" autocomplete="off">
+          <p></p>
+          <h4 class="mb-2">Registration Form</h4>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label" for="firstName">First name</label> <input alphabetOnly
+              class="form-control" formControlName="firstName" id="firstName" placeholder="First name"
+              required type="text">
+              <small class="text-danger" *ngIf="req('firstName')">Enter First Name</small>
+              <small class="text-danger" *ngIf="val('firstName','pattern')">First Name cannot contain number</small>
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-label" for="lastName">Last name</label> <input alphabetOnly
+              class="form-control" formControlName="lastName" id="lastName" placeholder="Last name"
+              required type="text">
+              <small class="text-danger" *ngIf="req('lastName')">Enter First Name</small>
+              <small class="text-danger" *ngIf="val('lastName','pattern')">Last Name cannot contain number</small>
+            </div>
+          </div>
+
+          <div class="col-12 mt-3">
+            <label class="form-label" for="username">Email Address</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+              <input class="form-control" formControlName="emailAddress"
+                     id="username" placeholder="Email address" required type="text">
+              <div class="invalid-feedback"></div>
+            </div>
+            <small class="text-danger" *ngIf="req('emailAddress')">Enter Email Address</small>
+            <small class="text-danger" *ngIf="val('emailAddress','email')">Invalid Email Address</small>
+          </div>
+
+          <div class="col-12 mt-3">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+              <input class="form-control" formControlName="password"
+                     id="password" placeholder="Password" required type="password">
+              <div class="invalid-feedback"></div>
+            </div>
+            <small class="text-danger" *ngIf="req('password')">Enter Password</small>
+          </div>
+
+          <div class="col-12 mt-3">
+            <label class="form-label" for="confirmpassword">Confirm Password</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+              <input class="form-control" formControlName="confirmPassword" id="confirmpassword"
+                     placeholder="Confirm Password" required type="password">
+              <div class="invalid-feedback"></div>
+            </div>
+            <small class="text-danger" *ngIf="req('confirmPassword')">Enter Confirm Password</small>
+          </div>
+
+          <div class="row g-3 mt-3">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <div *ngIf="loading">
+                <i class="fa fa-sync fa-spin me-1"></i>Please wait...
+              </div>
+              <button *ngIf="!loading" class="w-100 btn btn-success" type="submit">
+                <i class="fa fa-save me-2"></i>Register
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<p>&nbsp;</p>

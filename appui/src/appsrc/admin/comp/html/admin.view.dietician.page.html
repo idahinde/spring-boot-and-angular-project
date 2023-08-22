@@ -1,0 +1,31 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td colspan="2"><b>Dietician Account List</b></td>
+      <td align="right" colspan="3">
+        <a [routerLink]="['/admin','panel','create-dietician']" class="btn btn-success">
+          <i class="fa fa-file-lines me-1"></i>Create Dietician</a>
+      </td>
+    </tr>
+    <tr>
+      <td><b>S/N</b></td>
+      <td><b>Dietician ID</b></td>
+      <td><b>Full Name</b></td>
+      <td><b>Email</b></td>
+      <td align="right"><b>Action</b></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let usrda of dieticiandatalist; index as i;">
+      <td>{{i + 1}}</td>
+      <td>{{pad(usrda.id)}}</td>
+      <td>{{usrda.details.firstName}} {{usrda.details.lastName}}</td>
+      <td>{{usrda.details.emailAddress}}</td>
+      <td align="right">
+        <button (click)="deleteDietician(usrda.id)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
